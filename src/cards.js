@@ -25,6 +25,26 @@ const Cards = () => {
         }
     };
 
+    const dealSome = (players, deck, numberOfCardsPerPlayer) => {
+
+        const cards = shuffleDeck(deck);
+
+        let cardsToDeal = (players.length * numberOfCardsPerPlayer)
+
+        let theCards = cards.slice(0, cardsToDeal)
+
+        let i = 0
+
+        theCards.forEach (card => {
+
+            players[ i % players.length ].cards.push(card)
+            i++
+
+        });
+
+        return new Game(players, cards.slice(cardsToDeal));
+    };
+
     const shuffleDeck = () => {
         var i = deck.length, j, temp;
         while (--i > 0) {
